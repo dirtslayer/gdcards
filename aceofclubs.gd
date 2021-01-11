@@ -36,7 +36,6 @@ func _on_aceofclubs_input_event(viewport, event, shape_idx):
 		elif event.button_index == BUTTON_RIGHT: # and !event.pressed: 
 			if  not event.pressed:
 				var tc = cards._top_sprite()
-				print(tc.z_index)
 				if (z_index == tc.z_index):
 					tc.face.visible = not tc.face.visible
 				
