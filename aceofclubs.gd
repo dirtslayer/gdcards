@@ -34,7 +34,9 @@ func _on_aceofclubs_input_event(viewport, event, shape_idx):
 			mouse_pos = get_viewport().get_mouse_position()
 			mouse_to_center = restaVectores(self.position, mouse_pos)
 	if  event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and !event.pressed: 
-		face.visible = not face.visible
+		var tc = cards._top_sprite()
+		tc.face.visible = not tc.face.visible
+		#face.visible = not face.visible
 		get_tree().set_input_as_handled()
 
 func _on_aceofclubs_mouse_exited():
