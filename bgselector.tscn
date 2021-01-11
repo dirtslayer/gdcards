@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://images/Color_52_Faces_v.2.0.png" type="Texture" id=1]
+[ext_resource path="res://bgselector.gd" type="Script" id=2]
+[ext_resource path="res://bgarea.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 112.5, 157 )
+
+[node name="bgselector" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Color_52_Faces_v20" type="Sprite" parent="."]
+position = Vector2( 51.2798, 58.957 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 990, 2500, 1820, 320 )
+
+[node name="bgarea" type="Area2D" parent="Color_52_Faces_v20"]
+script = ExtResource( 3 )
+
+[node name="bgshape" type="CollisionShape2D" parent="Color_52_Faces_v20/bgarea"]
+position = Vector2( 118, 163 )
+shape = SubResource( 2 )
+[connection signal="input_event" from="Color_52_Faces_v20/bgarea" to="Color_52_Faces_v20/bgarea" method="_on_bgarea_input_event"]

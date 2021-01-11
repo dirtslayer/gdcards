@@ -1,20 +1,9 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 var face
 var c
@@ -52,3 +41,11 @@ func _on_shuffle_cards_button_up():
 	
 	
 	pass # Replace with function body.
+
+
+func _on_change_back_button_up():
+		get_node("bgselector").visible = true
+		# for some reason when we set it to true again the cards are 
+		# put back will look into
+		get_node("cards").visible = false
+

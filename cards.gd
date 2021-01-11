@@ -1,5 +1,6 @@
 extends Node2D
 
+onready var Table = get_parent()
 onready var status = get_parent().get_node("VBoxContainer/Status")
 onready var spriteList = get_parent().get_node("VBoxContainer/SpriteList")
 
@@ -14,9 +15,9 @@ func _ready():
 			if not (r==0 and n==0):
 				card_offsets.append(Vector2((n) * 263.25,(r)*351.25))
 			
+	for r in range(11):
+		back_offsets.append(Vector2((r+1)*-263,0))
 	
-	back_offsets.append(Vector2(-263,0))
-	back_offsets.append(Vector2(-526,0))
 	# todo: add the rest
 	
 	var aceofclubs = get_node("aceofclubs")

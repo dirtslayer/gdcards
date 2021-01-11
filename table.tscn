@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://images/Color_52_Faces_v.2.0.png" type="Texture" id=1]
 [ext_resource path="res://aceofclubs.gd" type="Script" id=2]
 [ext_resource path="res://cards.gd" type="Script" id=3]
 [ext_resource path="res://table.gd" type="Script" id=4]
+[ext_resource path="res://bgselector.gd" type="Script" id=5]
+[ext_resource path="res://bgarea.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 112, 157 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 112.5, 157 )
 
 [node name="table" type="Node"]
 script = ExtResource( 4 )
@@ -54,6 +59,7 @@ __meta__ = {
 }
 
 [node name="SpriteList" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
 margin_right = 608.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
@@ -64,7 +70,6 @@ __meta__ = {
 }
 
 [node name="Status" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 92.0
 margin_right = 608.0
 margin_bottom = 180.0
 size_flags_horizontal = 3
@@ -97,15 +102,36 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "shuffle stack"
 
-[node name="Button3" type="Button" parent="HBoxContainer"]
+[node name="change back" type="Button" parent="HBoxContainer"]
 margin_left = 522.0
 margin_right = 780.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-[connection signal="input_event" from="cards/aceofclubs" to="cards" method="_on_aceofclubs_input_event"]
+text = "Change Card Back"
+
+[node name="bgselector" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 5 )
+
+[node name="Color_52_Faces_v20" type="Sprite" parent="bgselector"]
+position = Vector2( 51.2798, 58.957 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 990, 2500, 1820, 320 )
+
+[node name="bgarea" type="Area2D" parent="bgselector/Color_52_Faces_v20"]
+script = ExtResource( 6 )
+
+[node name="bgshape" type="CollisionShape2D" parent="bgselector/Color_52_Faces_v20/bgarea"]
+position = Vector2( 118, 163 )
+shape = SubResource( 2 )
 [connection signal="input_event" from="cards/aceofclubs" to="cards/aceofclubs" method="_on_aceofclubs_input_event"]
+[connection signal="input_event" from="cards/aceofclubs" to="cards" method="_on_aceofclubs_input_event"]
 [connection signal="mouse_entered" from="cards/aceofclubs" to="cards/aceofclubs" method="_on_aceofclubs_mouse_entered"]
 [connection signal="mouse_exited" from="cards/aceofclubs" to="cards/aceofclubs" method="_on_aceofclubs_mouse_exited"]
 [connection signal="button_up" from="HBoxContainer/stack cards" to="." method="_on_stack_cards_button_up"]
 [connection signal="button_up" from="HBoxContainer/shuffle cards" to="." method="_on_shuffle_cards_button_up"]
+[connection signal="button_up" from="HBoxContainer/change back" to="." method="_on_change_back_button_up"]
+[connection signal="input_event" from="bgselector/Color_52_Faces_v20/bgarea" to="bgselector/Color_52_Faces_v20/bgarea" method="_on_bgarea_input_event"]
