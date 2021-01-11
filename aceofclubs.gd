@@ -29,15 +29,19 @@ func sumaVectores(v1, v2): #vector sum
 	return Vector2(v1.x + v2.x, v1.y + v2.y)
 
 func _on_aceofclubs_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		if event.pressed:
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == BUTTON_LEFT:
 			mouse_pos = get_viewport().get_mouse_position()
 			mouse_to_center = restaVectores(self.position, mouse_pos)
-	if  event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and !event.pressed: 
-		var tc = cards._top_sprite()
-		tc.face.visible = not tc.face.visible
-		#face.visible = not face.visible
-		get_tree().set_input_as_handled()
+		elif event.button_index == BUTTON_RIGHT: # and !event.pressed: 
+			if  not event.pressed:
+				var tc = cards._top_sprite()
+				print(tc.z_index)
+				if (z_index == tc.z_index):
+					tc.face.visible = not tc.face.visible
+				
+			#face.visible = not face.visible
+			#get_tree().set_input_as_handled()
 
 func _on_aceofclubs_mouse_exited():
 	mouse_in = false

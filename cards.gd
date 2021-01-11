@@ -60,12 +60,10 @@ var top_sprite = null
 # so the cards after the previous zindex will be bumped down
 func setz(top_node):
 	var split = top_node.z_index
-	print('split %s',split)
 	var i = 1
 	for c in get_children():
 		if (c is Area2D): #sanity check really may not need this
 			if ( c.z_index > split):
-				print('set node z index %s' % [i])
 				c.z_index -= 1
 		i += 1
 	top_node.z_index = get_child_count()
@@ -108,7 +106,7 @@ func _on_aceofclubs_input_event(viewport, event, shape_idx):
 			if top_sprite:
 				top_sprite.is_dragging = false #Set dragging to false
 				top_sprite = null #Top sprite to null
-	_print_status()
+	#_print_status()
 
 func _print_status():
 	var aux_sprt = []
